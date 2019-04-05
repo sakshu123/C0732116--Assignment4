@@ -30,21 +30,28 @@ namespace week14
             using (StreamReader file = new StreamReader("U:\\Users\\732116\\Beowulf.txt"))
             {
 
-                int counter = 0;
-                string ln;
+   
 
-                while ((ln = file.ReadLine()) != null)
+
+                int words = 0;
+                string delim = " ,.";
+                string[] fields = null;
+                string line = null;
+
+                while (!file.EndOfStream)
                 {
-                    Console.WriteLine(ln);
-                    Beowulf.Add(ln);
+                    line = file.ReadLine();//each time you read a line you should split it into the words
+                    line.Trim();
+                    fields = line.Split(delim.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+                    words += fields.Length; //and just add how many of them there is
                 }
+
+
+               
+                Console.WriteLine("The word count is {0}", words);
+
+
                 file.Close();
-
-                counter = File.ReadLines("U:\\Users\\732116\\Beowulf.txt").Count();
-
-                Console.WriteLine("\nThe number of lines in this essay are: " + counter);
-
-
 
             }
         }
