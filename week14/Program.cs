@@ -41,19 +41,19 @@ namespace week14
                 {
 
                     Beowulf.Add(ln);
-
+                    Console.WriteLine(ln);
                 }
 
                 file.Close();
                 counter = File.ReadLines("U:\\Users\\732116\\beowulf.txt").Count();
-                Console.WriteLine($"File has {counter} lines.");
+                Console.WriteLine($"\n\n\n\n\n\nFile has {counter} lines.");
 
             }
         }
 
         public void ReadTextFile()
         {
-
+            
             var reader = new StreamReader("U:\\Users\\732116\\beowulf.txt");
             string script = reader.ReadToEnd();
 
@@ -62,29 +62,29 @@ namespace week14
 
             while (index < text.Length)
             {
-
+               
                 while (index < text.Length && !char.IsWhiteSpace(text[index]))
                     index++;
 
-                Count++;
-
+               Count++;
+                
                 while (index < text.Length && char.IsWhiteSpace(text[index]))
                     index++;
             }
 
-            Console.WriteLine("Total Number of Words are " + Count);
+            Console.WriteLine("Total Number of Words are "+ Count);
 
         }
 
         public void Wordfind()
 
         {
-            int chr = 0;
+            int chr= 0;
             foreach (var line in File.ReadAllLines("U:\\Users\\732116\\beowulf.txt"))
             {
                 if (line.Contains("sea") && line.Contains("fare"))
                 {
-                    chr++;
+                  chr++;
                 }
 
             }
@@ -93,8 +93,8 @@ namespace week14
 
         public void Wordfind2()
         {
-            int chr = 0, y = 0, z = 0;
-
+            int chr=0, y=0, z = 0;
+            
             foreach (var line in File.ReadAllLines("U:\\Users\\732116\\beowulf.txt"))
             {
                 if (line.Contains("fare"))
@@ -112,7 +112,7 @@ namespace week14
 
             }
             z = chr - y;
-            Console.WriteLine("Total number of Lines which contain fare but not war: " + z);
+            Console.WriteLine("Total number of Lines which contain fare but not war: "+z);
         }
 
         public void NumLetters()
@@ -122,37 +122,40 @@ namespace week14
             string script = reader.ReadToEnd();
             int num = 0;
             foreach (char letter in script)
-            { num++; }
-            Console.WriteLine("Total number of letters per word: " + num);
+            { num++;}
+            Console.WriteLine("Average number of letters per word: "+num);
 
         }
 
 
         public int FindNumberOfBlankSpaces(string line)
         {
+          
+            
 
+                int countletters = 0;
+                int countSpaces = 0;
 
-
-            int countletters = 0;
-            int countSpaces = 0;
-
-            foreach (char c in line)
-            {
-                if (char.IsLetter(c))
+                foreach (char c in line)
                 {
-                    countletters++;
-                }
+                    if (char.IsLetter(c))
+                    {
+                        countletters++;
+                    }
 
-                if (char.IsWhiteSpace(c))
-                {
-                    countletters++;
+                    if (char.IsWhiteSpace(c))
+                    {
+                        countletters++;
+                    }
                 }
-            }
-            return countSpaces;
-
+                return countSpaces;
+            
         }
+
+
 
 
     }
 
 }
+    
