@@ -19,6 +19,7 @@ namespace week14
             p.ReadTextFile();
             p.Wordfind();
             p.Wordfind2();
+            p.NumLetters();
             Console.ReadKey();
 
 
@@ -114,6 +115,18 @@ namespace week14
             Console.WriteLine("Total number of Lines which contain fare but not war: " + z);
         }
 
+        public void NumLetters()
+        {
+
+            StreamReader reader = new StreamReader("U:\\Users\\732116\\beowulf.txt");
+            string script = reader.ReadToEnd();
+            int num = 0;
+            foreach (char letter in script)
+            { num++; }
+            Console.WriteLine("Total number of letters per word: " + num);
+
+        }
+
 
         public int FindNumberOfBlankSpaces(string line)
         {
@@ -140,11 +153,6 @@ namespace week14
         }
 
 
-
-
-
-
     }
 
 }
-
