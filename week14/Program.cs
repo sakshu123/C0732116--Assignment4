@@ -16,9 +16,9 @@ namespace week14
         {
             Program p = new Program();
             p.Beowulf = new ArrayList();
-            p.ReadTextFiles();
-
+            p.Wordfinder();
             Console.ReadLine();
+
         }
         public void Run()
         {
@@ -27,48 +27,86 @@ namespace week14
 
         public void ReadTextFiles()
         {
-            using (StreamReader file = new StreamReader("U:\\Users\\732116\\Beowulf.txt"))
+
+            // Read file using StreamReader. Read file line by line
+            using (StreamReader file = new StreamReader("U:\\Users\\732116\\beowulf.txt"))
             {
+                int counter = 0;
+                string ln;
 
-   
-
-
-                int words = 0;
-                string delim = " ,.";
-                string[] fields = null;
-                string line = null;
-
-                while (!file.EndOfStream)
+                while ((ln = file.ReadLine()) != null)
                 {
-                    line = file.ReadLine();//each time you read a line you should split it into the words
-                    line.Trim();
-                    fields = line.Split(delim.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-                    words += fields.Length; //and just add how many of them there is
+                    Console.WriteLine(ln);
+                    Beowulf.Add(ln);
                 }
-
-
-               
-                Console.WriteLine("The word count is {0}", words);
-
-
                 file.Close();
-
+                Console.WriteLine($"File has {counter} lines.");
             }
         }
         public int FindNumberOfBlankSpaces(string line)
         {
             int countletters = 0;
             int countSpaces = 0;
-
-            foreach (char c in line)
             {
-                if (char.IsLetter(c)) { countletters++; }
-
-                if (char.IsWhiteSpace(c)) { countletters++; }
+                foreach (char c in line)
+                {
+                    if (char.IsLetter(c)) { countletters++; }
+                    if (char.IsWhiteSpace(c)) { countSpaces++; }
+                }
+                return countSpaces;
             }
-            return countSpaces;
+        }
+        public void CountLinesReader()
+        {
+            long lineCounter = 0;
+            using (StreamReader fil = new StreamReader("U:\\Users\\732116\\beowulf.txt"))
+            {
+                while (fil.ReadLine() != null)
+                {
+                    lineCounter++;
+                }
+                Console.WriteLine(lineCounter);
+            }
+        }
+        public void WordCounter()
+        {
+
+            StreamReader reader = new StreamReader("U:\\Users\\732116\\beowulf.txt");
+            string script = reader.ReadToEnd();
+
+            var text = script.Trim();
+            int wordCount = 0, index = 0;
+
+            while (index < text.Length)
+            {
+                // check if current char is part of a word
+                while (index < text.Length && !char.IsWhiteSpace(text[index]))
+                    index++;
+
+                wordCount++;
+
+                // skip whitespace until next word
+                while (index < text.Length && char.IsWhiteSpace(text[index]))
+                    index++;
+            }
+
+            Console.WriteLine(wordCount);
+
 
         }
+        public void Wordfinder()
+        {
+            int f = 0;
+            foreach (var line in File.ReadAllLines("U:\\Users\\732116\\beowulf.txt"))
+            {
+                if (line.Contains("sea") && line.Contains("fare"))
+                {
+                    f++;
+                }
 
+            }
+            Console.WriteLine(f);
+        }
     }
+
 }
